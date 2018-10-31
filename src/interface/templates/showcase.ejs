@@ -1,0 +1,149 @@
+<%- include partials/header.ejs %>
+<%- include partials/nav.ejs %>
+
+<main role="main" class="container text-center">
+  <div class="mt-5 cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <main role="main" class="inner cover">
+      <h2 class="cover-heading h2-styles">Could you donate some of your spare CPU power to<br><%= locals.cause.name %>?</h2>
+
+      <% if (locals.causeImages.length) { %>
+        <p class="lead">
+          <% locals.causeImages.forEach((image) => { %>
+            <img src="<%= image.imageThumb2 %>" alt="Charity image" class="img-thumbnail">
+          <% }) %>
+        </p>
+      <% } %>
+      
+      <p class="lead">
+        <strong>Verification status:</strong>
+        <br>
+        <% if (cause.getIsVerified()) { %>
+          <a href="/faq#charity-verification" class="badge badge-success">Verified</a>
+        <% } else { %>
+          <% if (cause.getIsVerifiable()) { %>
+            
+            <% if (cause.getIsVerificationPending()) { %>
+              <a href="/faq#charity-verification" class="badge badge-warning">Awaiting verification</a>
+            <% } else if (cause.getHasFailedVerification()) { %>
+              <a href="/faq#charity-verification" class="badge badge-danger">Failed verification</a>
+            <% } else { %>
+              <a href="/faq#charity-verification" class="badge badge-danger">Not verified</a>
+            <% } %>
+
+          <% } else { %>
+            <a href="/faq#charity-verification" class="badge badge-secondary">Cannot verify</a>
+          <% } %>
+        <% } %>
+        <br>
+        <br>
+
+        <strong>Name:</strong>
+        <br>
+        <%= locals.cause.name %>
+        <br>
+        <br>
+
+        <strong>Incorporation ID:</strong>
+        <br>
+        <%= locals.cause.incorporationId %>
+        <br>
+        <br>
+
+        <strong>Incorporation date:</strong>
+        <br>
+        <%= locals.cause.incorporationDate %>
+        <br>
+        <br>
+
+        <strong>Phone:</strong>
+        <br>
+        <%= locals.cause.phone %>
+        <br>
+        <br>
+
+        <strong>Email:</strong>
+        <br>
+        <%= locals.cause.email %>
+        <br>
+        <br>
+
+        <strong>Website:</strong>
+        <br>
+        <%= locals.cause.website %>
+        <br>
+        <br>
+
+        <strong>Address:</strong>
+        <br>
+        <%= locals.cause.getSingleLineAddress() %>
+        <br>
+        <br>
+
+        <strong>Country:</strong>
+        <br>
+        <%= locals.cause.country %>
+        <br>
+        <br>
+
+        <strong>Description:</strong>
+        <br>
+        <%= locals.cause.desc %>
+        <br>
+        <br>
+
+        <strong>Mining donations received:</strong>
+        <br>
+        <%= inject.currencyLibrary.getDefaultCurrencySymbol() + inject.currencyLibrary.getMoneroToDefaultCurrency(locals.cause.totalPayouts, false) %>
+        <br>
+        <br>
+
+        <strong>Number of volunteer miners:</strong>
+        <br>
+        <%= locals.cause.totalMiners %>
+      </p>
+
+      <p class="lead">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseShowMeHow" aria-expanded="false" aria-controls="collapseShowMeHow">
+          How to mine cryptocurrency for this charity
+        </button>
+        <div class="collapse mt-2" id="collapseShowMeHow">
+
+          <div class="row">
+            <div class="col text-center">
+              <div class="card">
+                <div class="card-body">
+                  Step 1:<br>
+                  Download the open-source <a target="_blank" href="https://github.com/coinfunnel/client/releases/tag/<%= locals.clientVersion %>">CoinFunnel Client Setup</a> application.
+                  (Windows only)
+                </div>
+              </div>
+            </div>
+
+            <div class="col text-center">
+              <div class="card">
+                <div class="card-body">
+                  Step2:<br>
+                  Install the application. Your anti-virus may make strong objections. Add descriptions
+                  for how to handle various anti-virus objections.
+                </div>
+              </div>
+            </div>
+
+            <div class="col text-center">
+              <div class="card">
+                <div class="card-body">
+                  Step3:<br>
+                  Copy the following charity code, and paste this into your application to start mining:
+                  <strong><%= locals.cause.externalId %></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </p>
+    </main>
+  </div>
+</main>
+
+<%- include partials/footer.ejs %>

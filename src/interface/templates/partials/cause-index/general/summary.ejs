@@ -1,0 +1,195 @@
+<div class="tab-pane fade show active" id="list-general-summary" role="tabpanel" aria-labelledby="list-general-summary-list">
+
+  <div class="card">
+    <div class="card-header">
+      <i class="fas fa-chart-bar"></i>
+      My summary
+    </div>
+    <div class="card-body">
+        <div class="container">
+          <div class="row col pl-0">
+            <h5><i class="fas fa-users"></i> Mining volunteers</h5>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Total mining volunteers for this charity
+            </div>
+            <div class="col-6">
+              <span id="no-of-cause-miners"><%= locals.cause.totalMiners %></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <div class="container">
+          <div class="row col pl-0">
+            <h5><i class="fas fa-piggy-bank"></i> Mining donations</h5>
+          </div>
+
+          <!--
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              So far today
+            </div>
+            <div class="col-6">
+              <span id="total-mining-donations">Not yet implemented</span>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              So far this week
+            </div>
+            <div class="col-6">
+              <span id="total-mining-donations">Not yet implemented</span>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              So far this month
+            </div>
+            <div class="col-6">
+              <span id="total-mining-donations">Not yet implemented</span>
+            </div>
+          </div>
+          -->
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Total mining donations
+            </div>
+            <div class="col-6">
+              <span id="total-mining-donations">
+                XMR <%= locals.cause.getTotalPayoutsString() %>
+              </span>
+              <span class="font-weight-bold">
+                (<%= 
+                  inject.currencyLibrary.getUserCurrencySymbol(locals.user.currency) +
+                  inject.currencyLibrary.getMoneroToUserCurrency(locals.cause.totalPayouts, locals.user.currency, true)
+                %>)
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <div class="container">
+          <div class="row col pl-0">
+            <h5><i class="fas fa-tasks"></i> Tasks</h5>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Complete charity details
+            </div>
+            <div class="col-6">
+              <% if (locals.cause.getIsDetailsComplete()) { %>
+                <i class="fas fa-check-circle text-success"></i>
+              <% } else { %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Add charity description
+            </div>
+            <div class="col-6">
+              <% if (locals.cause.desc) { %>
+                <i class="fas fa-check-circle text-success"></i>
+              <% } else { %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Add charity keywords
+            </div>
+            <div class="col-6">
+              <% if (locals.cause.keywords.length) { %>
+                <i class="fas fa-check-circle text-success"></i>
+              <% } else { %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Add charity images (optional)
+            </div>
+            <div class="col-6">
+              <% if (locals.causeImages.length > 0) { %>
+                <i class="fas fa-check-circle text-success"></i>
+              <% } else { %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Put charity online
+            </div>
+            <div class="col-6">
+              <% if (locals.cause.isOnline) { %>
+                <i class="fas fa-check-circle text-success"></i>
+              <% } else { %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-6 pl-0">
+              Replace system wallet with charity wallet
+            </div>
+            <div class="col-6">
+              <% if (locals.currentWallet.creatorType === inject.WalletCreatorTypes.User) { %>
+                <i class="fas fa-check-circle text-success"></i>
+              <% } else { %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% } %>
+            </div>
+          </div>
+
+          <% if (locals.cause.getIsVerifiable() && !locals.cause.getIsVerificationComplete()) { %>
+            <div class="row summary-row">
+              <div class="col-6 pl-0">
+                Verify charity
+              </div>
+              <div class="col-6">
+                <% if (locals.cause.getIsVerificationPending()) { %>
+                  <i class="far fa-clock text-primary"></i>
+                <% } else { %>
+                  <i class="fas fa-times-circle text-danger"></i>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
+
+          <% if (locals.cause.getIsVerificationComplete()) { %>
+            <div class="row summary-row">
+              <div class="col-6 pl-0">
+                Verify charity
+              </div>
+              <div class="col-6">
+                <% if (locals.cause.getIsVerified()) { %>
+                  <i class="fas fa-check-circle text-success"></i>
+                <% } else { %>
+                  <i class="fas fa-exclamation-triangle text-warning"></i>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+
+    </div>
+  </div>
+
+</div>

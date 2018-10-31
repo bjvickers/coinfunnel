@@ -1,0 +1,52 @@
+<%- include partials/header.ejs %>
+<%- include partials/nav.ejs %>
+
+<main role="main" class="container text-center">
+  <h2 class="mt-5 h2-styles"><%= inject.seoLibrary.getRouteTitle(locals.pageACL.resource) %></h2>
+
+  <div class="card form-fronthouse">
+    <div class="card-body">
+      
+      <div id="login-error-notice" class="alert alert-danger d-none" role="alert"></div>
+
+      <form class="" name="login" action="<%= inject.ACL.PostLogin.resource %>" method="post">
+        
+        <div class="form-group row">
+          <div class="col text-left">
+            <label for="<%= inject.PostLoginSchema.user_email %>">Email</label>
+            <input type="text" 
+              id="<%= inject.PostLoginSchema.user_email %>" 
+              name="<%= inject.PostLoginSchema.user_email %>"
+              maxlength="<%= inject.PostLoginConstraints.user_email.length.maximum %>"
+              class="form-control">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <div class="col text-left">
+            <label for="<%= inject.PostLoginSchema.user_password %>">Password</label>
+            <span style="font-size: smaller;"><a href="<%= inject.ACL.GetResetPassword.resource %>"><%= inject.seoLibrary.getLinkTitle(inject.ACL.GetResetPassword.resource) %></a></span>
+            <input type="password" 
+              id="<%= inject.PostLoginSchema.user_password %>" 
+              name="<%= inject.PostLoginSchema.user_password %>" 
+              maxlength="<%= inject.PostLoginConstraints.user_password.length.maximum %>"
+              class="form-control">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <div class="col text-center">
+            <div
+              class="g-recaptcha"
+              style="transform:scale(0.9); transform-origin:0 0;"
+              data-sitekey="6LeMxVQUAAAAADuEKG3qVZYsnp3y4zp2s1f8Zz6i"></div>
+          </div>
+        </div>
+
+        <input type="submit" id="login-submit" value="Sign in" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+</main>
+
+<%- include partials/footer.ejs %>

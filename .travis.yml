@@ -1,0 +1,16 @@
+notifications:
+  email: false
+
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker-compose build
+  - docker-compose run base /bin/sh -c "npm run build-all-assets"
+  - docker-compose run base /bin/sh -c "npm run lint"
+  - docker-compose run base /bin/sh -c "npm run test-coverage && TRAVIS=${TRAVIS} TRAVIS_JOB_ID=${TRAVIS_JOB_ID} TRAVIS_BRANCH=${TRAVIS_BRANCH} COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN} COVERALLS_SERVICE_NAME=travis-ci npm run coveralls" 
+
+after_script:
+  - docker-compose down

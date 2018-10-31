@@ -1,0 +1,23 @@
+{
+  "app": {
+    "log_level": "debug",
+    "private_dns": "http://127.0.0.1",
+    "private_port": "3000",
+    "public_dns": "http://127.0.0.1:3000",
+    "public_port": "3000",
+    "public_dns_domain": "127.0.0.1"
+  },
+  "recaptcha": {
+    "use": "false"
+  },
+  "cookie": {
+    "domain": "localhost",
+    "secure": false
+  },
+  "search": {
+    "results_per_page": 2
+  },
+  "email": {
+    "use": "local"
+  }
+}

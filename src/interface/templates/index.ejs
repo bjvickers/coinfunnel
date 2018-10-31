@@ -1,0 +1,320 @@
+<%- include partials/header.ejs %>
+<%- include partials/nav.ejs %>
+
+<main role="main">
+
+  <section style="background-color: #252638;">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <div style="padding-top: 14em; padding-bottom: 9em;">
+          <h1 style="font-size: 3.5em; color: white;">
+            <%= inject.seoLibrary.getRouteTitle(locals.pageACL.resource) %>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="row">
+
+          <div class="col-sm text-center pt-4 pb-4">
+            <span style="font-size:2em;"><%= locals.noOfCausesOnline %></span>
+            <br>
+            <span>charities online</span>
+          </div>
+
+          <div class="col-sm text-center pt-4 pb-4">
+            <span style="font-size:2em;" id="no-of-all-system-online-contribs"><%= locals.sumTotalMiners %></span>
+            <br>
+            <span>mining volunteers</span>
+          </div>
+
+          <div class="col-sm text-center pt-4 pb-4">
+            <span style="font-size:2em;" id="">
+              <%= inject.currencyLibrary.getDefaultCurrencySymbol() + inject.currencyLibrary.getMoneroToDefaultCurrency(locals.sumTotalPayouts, false) %>
+            </span>
+            <br>
+            <span>raised for charity</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 6em; padding-bottom: 6em;" class="px-2 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h3 class="h2-styles">What is CoinFunnel?</h3>
+          <p class="lead">
+            CoinFunnel is a service which allows people to voluntarily mine cryptocurrency for
+            their favourite charities. Any charity can freely sign up and be listed on this site. 
+            Anyone can be a volunteer miner (no need to sign up), all you need is a computer.
+            Prospective volunteers can search the charities list, find one which appeals, then download the free, 
+            open-source mining application to generate cryptocurrency for that charity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <% if (locals.recentCauses.length === 3) { %>
+    <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="bg-secondary">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h3 class="h2-styles">Recent charities</h3>
+  
+              <div class="row">
+                <% locals.recentCauses.forEach((cause) => { %>
+                  <div class="col-sm text-center p-4 lead mt-1 mx-1" style="border: 1px solid darkgray;">
+                    <image src="<%= cause.getPrimaryImage() %>" alt="thumnail" class="img-thumbnail" />
+                    <br>
+                    <strong><%= cause.name %></strong>
+                    <br>
+                    <%= cause.country %>
+                    <br>
+                    <br>
+                    <%= cause.getTruncatedDesc(80) %>
+                    <a href="<%= `${inject.ACL.GetShowcase.resource}/${cause.path.getCombinedPath()}` %>">more</a>
+                  </div>
+                <% }) %>
+              </div>
+  
+          </div>
+        </div>
+      </div>
+    </section>
+    <% } %>
+
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="d-sm-flex justify-content-center">
+            <div class="pr-4">
+              <h3 class="h2-styles">Some heading</h3>
+              <p class="lead">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+
+            <div class="pr-4">
+              <h3 class="h2-styles">Some heading</h3>
+              <p class="lead">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="d-sm-flex justify-content-center">
+            <div class="pr-4">
+              <h3 class="h2-styles">What is cryptcurrency?</h3>
+              <p class="lead">
+                  Cryptocurrencies are digital currencies. The 'crypto' bit refers to the 
+                  mechanisms used to validate them. Bitcoin is the most well
+                  known, although there are many others. CoinFunnel supports the 
+                  Monero currency, because this can be mined easily on most home computers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="px-2 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h3 class="h2-styles">What is mining?</h3>
+          <p class="lead">
+            'Mining' cryptocurrency is the process of creating digital currency 
+            using a computer. It is not normally important to understand the 
+            mining process in detail, any more than it is important to understand 
+            network protocols just to use the Internet. However, here is a 
+            simplified overview:
+          </p>
+
+          <p class="lead">
+            Specialist mining software performs 'guesses', known technically as 'hashes',
+            where it will generate a random number, then compare this number
+            against the number that is created when all recent crypto transactions
+            (a block) are summarised by a single number. If that numbers match, then 
+            the 'guess' was successful and the software has successfully 'mined a block',
+            for which you will receive a crypto reward. CoinFunnel ensures that the
+            reward to sent to the charity you are mining for.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h3 class="h2-styles">Charities</h3>
+          <div class="row">
+
+            <div class="col-sm text-center p-4 lead mt-1 mx-1" style="border: 1px solid darkgray;">
+                <h4>Step 1</h4>
+                Register for free and add your charity details to be listed on this site
+            </div>
+
+            <div class="col-sm text-center p-4 lead mt-1 mx-1" style="border: 1px solid darkgray;">
+                <h4>Step 2</h4>
+                Download and try out your personalised mining application, to see how it works
+            </div>
+
+            <div class="col-sm text-center p-4 lead mt-1 mx-1" style="border: 1px solid darkgray;">
+                <h4>Step 3</h4>
+                Spread the word to your supporters using the social media links
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h3 class="h2-styles">Supporters</h3>
+          <div class="row">
+
+            <div class="col-sm text-center p-4 lead mt-1 mx-1" style="border: 1px solid darkgray;">
+                <h4>Step 1</h4>
+                Visit the <a href="/explore">Explore</a> page to browse
+                the charities listed on this site
+            </div>
+
+            <div class="col-sm text-center p-4 lead mt-1 mx-1" style="border: 1px solid darkgray;">
+                <h4>Step 2</h4>
+                Find one that appeals to you, click for more information, then download 
+                the mining application
+            </div>
+
+            <div class="col-sm text-center p-4 lead mt-1 mx-1" style="border: 1px solid darkgray;">
+                <h4>Step 3</h4>
+                Copy and paste the charity code into the application
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="px-2 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2 class="h2-styles">In the news</h2>
+          <h3 class="h3-styles">Unicef turns to cryptocurrency mining to raise money for refugees</h3>
+          <p class="lead pb-3">
+            The Independent: <a href="https://www.independent.co.uk/life-style/gadgets-and-tech/news/unicef-cryptocurrency-fundraising-child-refugees-digital-bitcoin-monero-a8332726.html">Read article</a>
+          </p>
+
+          <h3 class="h3-styles">Michael Owen to launch own crypto coin</h3>
+          <p class="lead pb-3">
+            The Independent: <a href="https://www.independent.ie/business/technology/news/michael-owen-to-launch-own-crypto-coin-36730055.html">Read article</a>
+          </p>
+
+          <h3 class="h3-styles">HullCoin: The social experiment that is rewarding good deeds</h3>
+          <p class="lead pb-3">
+            Financial Times: <a href="https://www.ft.com/content/df75ff98-8904-11e7-afd2-74b8ecd34d3b">Read article</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="px-2 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2 class="h2-styles">Supporter concerns</h2>
+          <h3 class="h3-styles">Is the mining application a spyware?</h3>
+          <p class="lead pb-3">
+            No, nor is it a trojan or any other kind of malware. The
+            app is open-source, which means anyone can view the source code
+            to confirm this. The app actually consists of two programs: a graphical 
+            user interface (developed by CoinFunnel), and a background 'mining process'
+            which, although not developed by CoinFunnel, is also open source and 
+            approved by the Monero crypto developers.
+          </p>
+
+          <h3 class="h3-styles">Will the mining application slow down my CPU?</h3>
+          <p class="lead">
+            No. The mining app is configured to become active only when your
+            computer is idle. When you use your computer, the app will pause. 
+            Additionally, the app is designed to use only 25% of your idle CPU, to
+            minimise your electricty costs and to prevent against CPU burnout*.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="px-2 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2 class="h2-styles">Charity concerns</h2>
+          <h3 class="h3-styles">Isnt cryptocurrency complicated?</h3>
+          <p class="lead">
+            Not really. You don't need to know the mechanics of crypto to mine or 
+            receive it, in the same way you don't need to understand how the Internet 
+            works to use your browser.
+            However, for charities there are some things that need to be learned, 
+            including how to create crypto wallets into which all mining donations
+            will be received. This is actually quite simple, and CoinFunnel provides 
+            lots of easy-to-use information popups, simple step-by-step guides, and a temporary 
+            crypto wallet to get you started.
+          </p>
+
+          <h3 class="h3-styles">Is cryptocurrency legal?</h3>
+          <p class="lead">
+            Description goes here
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--
+  <section style="border-top: 1px solid darkgray; padding-top: 6em; padding-bottom: 6em;" class="px-2 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h3 class="h2-styles">Cash-for-crypto</h3>
+          <p class="lead">
+            As a charity receiving mining donations, you can periodically
+            sell your cryptocurrency for 'real' money, on a number of exchanges. Even
+            easier, CoinFunnel provides a 'cash-for-crypto' service, and can buy your crypto 
+            directly, for a fee (not possible in all countries).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+</main>
+
+<%- include partials/footer.ejs %>

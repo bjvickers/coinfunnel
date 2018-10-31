@@ -1,0 +1,101 @@
+<div class="tab-pane fade" id="list-add-wallet" role="tabpanel" aria-labelledby="list-add-wallet-list">
+
+  <div class="card">
+    <div class="card-header">
+      <i class="far fa-plus-square"></i>
+      Insert new wallet
+      <a data-toggle="collapse" href="#addWalletHelpFull" aria-expanded="false" aria-controls="addWalletHelpFull"><i class="far fa-question-circle"></i></a>
+    </div>
+    <div class="card-body">
+      
+      <div id="wallet-success-notices d-none"></div>
+      <div id="wallet-error-notices" class="alert alert-danger d-none" role="alert"></div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col pl-0">
+            <div class="collapse text-muted" id="addWalletHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <form id="wallet" name="wallet" action="<%= inject.ACL.PostWallet.resource %>" method="post">
+
+        <div class="form-group row mb-4 pb-3">
+          <div class="col">
+            <label for="<%= inject.PostWalletSchema.wallet_currency %>">Wallet currency<span class="text-danger">*</span></label>
+            <a data-toggle="collapse" href="#currencyHelpFull" aria-expanded="false" aria-controls="currencyHelpFull"><i class="far fa-question-circle"></i></a>
+            <span id="wallet-saved" class="badge badge-success d-none">Saved</span>
+
+            <div class="collapse text-muted" id="currencyHelpFull">
+              <div class="card card-body mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+
+            <select class="custom-select form-control"
+              id="<%= inject.PostWalletSchema.wallet_currency %>" 
+              name="<%= inject.PostWalletSchema.wallet_currency %>">
+              <option value="<%= inject.SupportedCurrencies.Monero %>" selected="selected"><%= inject.SupportedCurrencies.Monero %></option>
+            </select>
+
+            <small class="form-text text-muted">
+              Insert help text here relevant to the input.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <label for="<%= inject.PostWalletSchema.wallet_address %>">Wallet address<span class="text-danger">*</span></label>
+            <a data-toggle="collapse" href="#walletAddressHelpFull" aria-expanded="false" aria-controls="walletAddressHelpFull"><i class="far fa-question-circle"></i></a>
+            
+            <div class="collapse text-muted" id="walletAddressHelpFull">
+              <div class="card card-body mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+            
+            <input type="text" 
+              id="<%= inject.PostWalletSchema.wallet_address %>" 
+              name="<%= inject.PostWalletSchema.wallet_address %>" 
+              maxlength="<%= inject.PostWalletConstraints.wallet_address.length.maximum %>"
+              value=""
+              class="form-control"
+              placeholder="Insert help text here relevant to the input.">
+
+            <small class="form-text text-muted">
+              Insert help text here relevant to the input.
+            </small>
+          </div>
+        </div>
+        
+        <input type="hidden" 
+          id="<%= inject.PostWalletSchema.wallet_creator_type %>"
+          name="<%= inject.PostWalletSchema.wallet_creator_type %>"
+          value="<%= inject.WalletCreatorTypes.User %>">
+
+        <input type="submit" id="wallet-submit" value="Save wallet" class="btn btn-success">
+        <input type="submit" id="cancel-wallet-submit" value="Cancel" class="btn btn-light">
+      </form>
+
+    </div>
+  </div>
+
+</div>

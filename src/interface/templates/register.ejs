@@ -1,0 +1,137 @@
+<%- include partials/header.ejs %>
+<%- include partials/nav.ejs %>
+
+<main role="main" class="container text-center">
+  <h2 class="mt-5 h2-styles"><%= inject.seoLibrary.getRouteTitle(locals.pageACL.resource) %></h2>
+
+  <div class="card form-fronthouse form-fronthouse-wider">
+    <div class="card-body">
+
+      <div id="register-success-notice" class="success-notice d-none" role="alert"></div>
+      <div id="register-error-notice" class="alert alert-danger d-none" role="alert"></div>
+
+      <form name="register" action="<%= inject.ACL.PostRegister.resource %>" method="post">
+        <div class="form-group row mb-4 pb-0">
+          <div class="col text-left">
+            <label for="<%= inject.PostRegisterSchema.user_role %>">Account type<span class="text-danger">*</span></label>
+            <a data-toggle="collapse" href="#accountTypeHelpFull" aria-expanded="false" aria-controls="accountTypeHelpFull"><i class="far fa-question-circle"></i></a>
+
+            <div class="collapse text-muted" id="accountTypeHelpFull">
+              <div class="card card-body mb-2">
+                CoinFunnel only provides charity accounts for now. This may change in the future, to support individual and
+                group causes / actions.
+              </div>
+            </div>
+
+            <select class="custom-select form-control"
+              id="<%= inject.PostRegisterSchema.user_role %>"
+              name="<%= inject.PostRegisterSchema.user_role %>">
+              <option value="<%= inject.UserRoles.cause %>" selected="selected">Charity</option>
+            </select>
+
+            <small class="form-text text-muted">
+              CoinFunnel only provides charity accounts for now. Volunter miners don't need to register
+              to start contributing.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row  mb-4 pb-0">
+          <div class="col text-left">
+            <label for="<%= inject.PostRegisterSchema.user_email %>">Email<span class="text-danger">*</span></label>
+            <a data-toggle="collapse" href="#registerEmailHelpFull" aria-expanded="false" aria-controls="registerEmailHelpFull"><i class="far fa-question-circle"></i></a>
+
+            <div class="collapse text-muted" id="registerEmailHelpFull">
+              <div class="card card-body mb-2">
+                Your email will be kept private from third parties. It will be used only
+                for account-related purposes, such as notification of changes and updates
+                etc.
+              </div>
+            </div>
+
+            <input type="text" 
+              id="<%= inject.PostRegisterSchema.user_email %>" 
+              name="<%= inject.PostRegisterSchema.user_email %>" 
+              maxlength="<%= inject.PostRegisterConstraints.user_email.length.maximum %>"
+              class="form-control">
+
+            <small class="form-text text-muted">
+              This will be your username. You can add the name of your charity after 
+              registration.
+            </small>
+          </div>
+        </div>
+    
+        <div class="form-group row  mb-4 pb-0">
+          <div class="col text-left">
+            <label for="<%= inject.PostRegisterSchema.first_name %>">First name<span class="text-danger">*</span></label>            
+            <input type="text" 
+              id="<%= inject.PostRegisterSchema.first_name %>" 
+              name="<%= inject.PostRegisterSchema.first_name %>" 
+              maxlength="<%= inject.PostRegisterConstraints.first_name.length.maximum %>"
+              class="form-control">
+          </div>
+        </div>
+    
+        <div class="form-group row  mb-4 pb-0">
+          <div class="col text-left">
+            <label for="<%= inject.PostRegisterSchema.last_name %>">Last name<span class="text-danger">*</span></label>            
+            <input type="text" 
+              id="<%= inject.PostRegisterSchema.last_name %>" 
+              name="<%= inject.PostRegisterSchema.last_name %>" 
+              maxlength="<%= inject.PostRegisterConstraints.first_name.length.maximum %>"
+              class="form-control">
+          </div>
+        </div>
+    
+        <div class="form-group row mb-4 pb-0">
+          <div class="col text-left">
+            <label for="<%= inject.PostRegisterSchema.user_password %>">Password<span class="text-danger">*</span></label>
+            <a data-toggle="collapse" href="#registerPasswordHelpFull" aria-expanded="false" aria-controls="registerPasswordHelpFull"><i class="far fa-question-circle"></i></a>
+
+            <div class="collapse text-muted" id="registerPasswordHelpFull">
+              <div class="card card-body mb-2">
+                Whilst CoinFunnel does not store sensitive charity, personal or financial 
+                data that is not already in the public domain, it is important to secure
+                your account as best as possible. Recommended is to use a phrase 
+                comprised of random words, as this is more secure than a password.
+              </div>
+            </div>
+            
+            <input type="password" 
+              id="<%= inject.PostRegisterSchema.user_password %>" 
+              name="<%= inject.PostRegisterSchema.user_password %>" 
+              maxlength="<%= inject.PostRegisterConstraints.user_password.length.maximum %>"
+              class="form-control">
+
+            <small class="form-text text-muted">
+              Only latin characters (a-z, A-Z), digits (0-9) and spaces allowed.
+              Minimum length 10 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col text-center">
+            <div
+              class="g-recaptcha"
+              style="transform:scale(0.9); transform-origin:0 0;"
+              data-sitekey="6LeRxVQUAAAAAGFBJO9ZzSyutXeqgeIlxgmIt-if"></div>
+          </div>
+        </div>
+
+        <p class="text-left text-muted small mb-4 pb-0">
+          By clicking “Create an account”, you agree to the CoinFunnel 
+          <a target="_blank" href="/terms-of-service.html">terms of service</a>
+          and 
+          <a target="_blank" href="/privacy-policy.html">privacy policy</a>.
+        </p>
+
+        <input type="submit"  id="register-submit" value="Create an account" class="btn btn-success">
+      </form>
+
+    </div>
+  </div>
+</main>
+
+<%- include partials/footer.ejs %>

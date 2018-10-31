@@ -1,0 +1,97 @@
+<div class="tab-pane fade show active" id="list-account-details" role="tabpanel" aria-labelledby="list-account-details-list">
+    <div class="card">
+      <div class="card-header">
+        <i class="far fa-user"></i>
+        Account details
+      </div>
+      <div class="card-body">
+        <div class="container">
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Account name</div>
+            <div class="col-8" id="account-name"><%= locals.user.getFullName() %></div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Account email address</div>
+            <div class="col-8" id="account-email"><%= locals.user.email %></div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-4 pl-0">
+              Charity ID
+            </div>
+            <div class="col-8">
+              <%= locals.cause.externalId %>
+              <a data-toggle="collapse" href="#charityIDHelpFull" aria-expanded="false" aria-controls="charityIDHelpFull"><i class="far fa-question-circle"></i></a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col pl-0">
+              <div class="collapse text-muted" id="charityIDHelpFull">
+                <div class="card card-body mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Last signed in</div>
+            <div class="col-8" id="account-last-login">
+              <% if (locals.user.lastLoggedIn) { %>
+                <%= inject.dateLibrary.formatLongWithTime(locals.user.lastLoggedIn) %>
+              <% } else { %>
+                No previous sign-in
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <div id="account-currency-error" class="alert alert-danger d-none" role="alert"></div>
+        <div class="container">
+          <div class="row summary-row align-items-center">
+            <div class="col-4 pl-0">
+              Currency display
+              <span id="account-currency-saved" class="badge badge-success d-none">Saved</span>
+            </div>
+            <div class="col-8">
+              <form id="account-currency-frm" name="account-currency-frm" action="/account/currency" class="form-inline">
+                <label class="sr-only" for="account-currency">Currency display</label>
+
+                <div class="input-group">
+                  <select class="custom-select form-control"
+                    id="account_currency"
+                    name="account_currency"
+                    style="min-width: 14em;"
+                    disabled>
+                      <option
+                        <% if (locals.user.currency === 'eur') { %>selected="selected"<% } %>
+                        value="eur">€ Euro </option>
+                      <option
+                        <% if (locals.user.currency === 'usd') { %>selected="selected"<% } %>
+                        value="usd">$ US Dollar </option>
+                      <option
+                        <% if (locals.user.currency === 'gbp') { %>selected="selected"<% } %>
+                        value="gbp">£ Pound sterling </option>
+                  </select>
+
+                  <div class="input-group-append">
+                    <input type="submit" id="account-currency-edit" value="Edit" class="btn btn-primary">
+                    <input type="submit" id="account-currency-submit" value="Save" class="btn btn-success d-none">
+                    <input type="submit" id="account-currency-cancel" value="Cancel" class="btn btn-light d-none">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+</div>

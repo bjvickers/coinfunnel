@@ -1,0 +1,37 @@
+<div class="tab-pane fade" id="list-delete-account" role="tabpanel" aria-labelledby="list-delete-account-list">
+  <div class="card">
+    <div class="card-header">
+      <i class="far fa-trash-alt"></i>
+      Delete account
+    </div>
+    <div class="card-body">
+
+      <div id="account-delete-error-notices" class="alert alert-danger d-none" role="alert"></div>
+
+      <p class="card-text mb-3 text-muted">
+        When you delete your account, all information
+        is permanently deleted from the site and will not be recoverable. It may take several minutes
+        to remove all data completely. The site software will email you the details of your wallet 
+        addresses, however, it is worth making a note of your addresses in case the email gets lost. 
+        Note that your wallets will, of course, continue to work outside of this site as normal.
+      </p>
+  
+      <form id="account-delete-form" name="account-delete-form" action="<%= inject.ACL.DeleteAccount.resource %>" method="delete">
+        <div class="form-group row">
+          <div class="col">
+            <label for="<%= inject.DeleteAccountSchema.user_password %>">Enter password to confirm deletion<span class="text-danger">*</span></label>
+            <input type="password" 
+              id="<%= inject.DeleteAccountSchema.user_password %>" 
+              name="<%= inject.DeleteAccountSchema.user_password %>"
+              maxlength="<%= inject.DeleteAccountConstraints.user_password.length.maximum %>"
+              class="form-control"
+              placeholder="Insert help text here relevant to the input.">
+          </div>
+        </div>
+
+        <input type="submit" id="account-delete" value="Delete account" class="btn btn-danger">
+        <input type="submit" id="cancel-account-delete" value="Cancel" class="btn btn-light">
+      </form>
+    </div>
+  </div>
+</div>

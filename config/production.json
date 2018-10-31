@@ -1,0 +1,20 @@
+{
+  "app": {
+    "log_level": "info",
+    "private_dns": "http://127.0.0.1",
+    "private_port": "3000",
+    "public_dns": "https://coinfunnel.org",
+    "public_port": "443",
+    "public_dns_domain": "coinfunnel.org"
+  },
+  "recaptcha": {
+    "use": "true"
+  },
+  "cookie": {
+    "domain": "coinfunnel.org",
+    "secure": false
+  },
+  "email": {
+    "use": "sendgrid"
+  }
+}

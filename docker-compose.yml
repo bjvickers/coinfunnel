@@ -1,0 +1,81 @@
+version: "3"
+
+volumes:
+  database:
+  maildev:
+  # reverseproxy:
+
+networks:
+  basenet:
+    driver: bridge
+
+services:
+
+  maildev:
+    container_name: maildev
+    image: djfarrelly/maildev
+    ports:
+      - 1080:80
+    volumes:
+      - maildev:/mail
+    networks:
+      basenet:
+        aliases:
+          - maildev
+
+  mongo:
+    container_name: mongo
+    image: mvertes/alpine-mongo:3.4.9-0
+    ports:
+      - 27017:27017
+    volumes:
+      - database:/data/db
+    networks:
+      basenet:
+        aliases:
+          - base
+
+  #nginx:
+    # container_name: nginx
+    # image: smebberson/alpine-nginx:3.0.0
+    # ports:
+    #   # Expose port to host machine for debugging
+    #   - 80:80
+    # volumes:
+    #   - reverseproxy:/nginx
+
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+      #args:
+        # Dockfile variables provided at buildtime
+        # APP_URL: ${APP_URL}
+    environment:
+      - NODE_ENV
+      - NODE_CONFIG_DIR
+      - MONGO_CONN
+      - MONGO_DB_NAME
+      - TOKEN_SECRET
+      - CLOUDINARY_NAME
+      - CLOUDINARY_API_KEY
+      - CLOUDINARY_API_SECRET
+      - CLOUDINARY_URL
+      - CLOUDINARY_UPLOAD_FOLDER
+      - CLOUDINARY_CUSTOM_THUMB
+      - SENDGRID_API_KEY
+    volumes:
+      - ./package.json:/app/package.json
+      - ./gulpfile.js:/app/gulpfile.js
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./tests:/app/tests
+      - ./sandbox:/app/sandbox
+    command: npm run debug
+    ports:
+      - 3000:3000
+    networks:
+      basenet:
+        aliases:
+          - server

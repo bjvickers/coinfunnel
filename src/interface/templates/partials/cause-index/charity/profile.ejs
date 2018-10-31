@@ -1,0 +1,436 @@
+<div class="tab-pane fade show active" id="list-charity-profile" role="tabpanel" aria-labelledby="list-charity-profile-list">
+    
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-edit"></i>
+        Charity details
+        <a data-toggle="collapse" href="#charityProfileHelpFull" aria-expanded="false" aria-controls="charityProfileHelpFull"><i class="far fa-question-circle"></i></a>
+      </div>
+      <div class="card-body">
+    
+        <form id="cause" name="cause" action="<%= inject.ACL.PostCause.resource %>" method="post">
+          <!-- Cause name -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-name-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="collapse text-muted" id="charityProfileHelpFull">
+                <div class="card card-body mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4 pb-3">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_name %>">Charity name<span class="text-danger">*</span></label> 
+              <a data-toggle="collapse" href="#causeNameHelpFull" aria-expanded="false" aria-controls="causeNameHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-name-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causeNameHelpFull">
+                <div class="card card-body mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+
+              <div class="input-group">
+                
+                <input type="text"
+                  id="<%= inject.PostCauseSchema.cause_name %>" 
+                  name="<%= inject.PostCauseSchema.cause_name %>" 
+                  value="<%= locals.cause.name %>" 
+                  maxlength="<%= inject.PostCauseConstraints.cause_name.length.maximum %>" 
+                  class="form-control"
+                  disabled
+                  placeholder="Insert help text here relevant to the input.">
+                
+                <div class="input-group-append">
+                  <input type="submit" id="cause-name-edit" value="Edit" class="btn btn-primary">
+                  <input type="submit" id="cause-name-submit" value="Save" class="btn btn-success d-none">
+                  <input type="submit" id="cause-name-cancel" value="Cancel" class="btn btn-light d-none">
+                </div>
+
+              </div>
+
+              <small class="form-text text-muted">
+                Insert help text here relevant to the input.
+              </small>
+            </div>
+          </div>
+
+          <!-- Cause incorporation number -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-incorporation-id-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4 pb-3">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_incorporation_id %>">Incorporation ID</label>
+              <a data-toggle="collapse" href="#causeIncorporationIdHelpFull" aria-expanded="false" aria-controls="causeIncorporationIdHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-incorporation-id-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causeIncorporationIdHelpFull">
+                <div class="card card-body mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+              
+              <div class="input-group">
+
+                <input type="text"
+                  id="<%= inject.PostCauseSchema.cause_incorporation_id %>" 
+                  name="<%= inject.PostCauseSchema.cause_incorporation_id %>" 
+                  value="<%= locals.cause.incorporationId %>"
+                  maxlength="<%= inject.PostCauseConstraints.cause_incorporation_id.length.maximum %>" 
+                  class="form-control"
+                  disabled
+                  placeholder="Insert help text here relevant to the input.">
+
+                <div class="input-group-append">
+                  <input type="submit" id="cause-incorporation-id-edit" value="Edit" class="btn btn-primary">
+                  <input type="submit" id="cause-incorporation-id-submit" value="Save" class="btn btn-success d-none">
+                  <input type="submit" id="cause-incorporation-id-cancel" value="Cancel" class="btn btn-light d-none">
+                </div>
+
+              </div>
+
+              <small class="form-text text-muted">
+                Insert help text here relevant to the input.
+              </small>
+            </div>
+          </div>
+
+          <!-- Cause incorporation date -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-incorporation-date-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4 pb-3">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_incorporation_date %>">Incorporation or inception date</label>
+              <a data-toggle="collapse" href="#causeIncorporationDateHelpFull" aria-expanded="false" aria-controls="causeIncorporationDateHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-incorporation-date-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causeIncorporationDateHelpFull">
+                <div class="card card-body mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+              
+              <div class="input-group">
+
+                <input type="text"
+                  id="<%= inject.PostCauseSchema.cause_incorporation_date %>" 
+                  name="<%= inject.PostCauseSchema.cause_incorporation_date %>" 
+                  value="<%= locals.cause.incorporationDate %>"
+                  maxlength="<%= inject.PostCauseConstraints.cause_incorporation_date.length.maximum %>" 
+                  class="form-control"
+                  disabled
+                  placeholder="Insert help text here relevant to the input.">
+                
+                <div class="input-group-append">
+                  <input type="submit" id="cause-incorporation-date-edit" value="Edit" class="btn btn-primary">
+                  <input type="submit" id="cause-incorporation-date-submit" value="Save" class="btn btn-success d-none">
+                  <input type="submit" id="cause-incorporation-date-cancel" value="Cancel" class="btn btn-light d-none">
+                </div>
+
+              </div>
+
+              <small class="form-text text-muted">
+                Insert help text here relevant to the input.
+              </small>
+            </div>
+          </div>
+
+          <!-- Cause phone -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-phone-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4 pb-3">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_phone %>">Phone<span class="text-danger">*</span></label>
+              <a data-toggle="collapse" href="#causePhoneHelpFull" aria-expanded="false" aria-controls="causePhoneHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-phone-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causePhoneHelpFull">
+                <div class="card card-body mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+              
+              <div class="input-group">
+
+                <input type="text"
+                  id="<%= inject.PostCauseSchema.cause_phone %>" 
+                  name="<%= inject.PostCauseSchema.cause_phone %>" 
+                  value="<%= locals.cause.phone %>" 
+                  maxlength="<%= inject.PostCauseConstraints.cause_phone.length.maximum %>"
+                  class="form-control"
+                  disabled
+                  placeholder="Insert help text here relevant to the input.">
+
+                <div class="input-group-append">
+                  <input type="submit" id="cause-phone-edit" value="Edit" class="btn btn-primary">
+                  <input type="submit" id="cause-phone-submit" value="Save" class="btn btn-success d-none">
+                  <input type="submit" id="cause-phone-cancel" value="Cancel" class="btn btn-light d-none">
+                </div>
+              
+              </div>
+
+              <small class="form-text text-muted">
+                Insert help text here relevant to the input.
+              </small>
+            </div>
+          </div>
+
+          <!-- Cause email -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-email-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4 pb-3">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_email %>">Email<span class="text-danger">*</span></label>
+              <a data-toggle="collapse" href="#causeEmailHelpFull" aria-expanded="false" aria-controls="causeEmailHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-email-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causeEmailHelpFull">
+                <div class="card card-body mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+              
+              <div class="input-group">
+
+                <input type="text"
+                  id="<%= inject.PostCauseSchema.cause_email %>" 
+                  name="<%= inject.PostCauseSchema.cause_email %>" 
+                  value="<%= locals.cause.email %>" 
+                  maxlength="<%= inject.PostCauseConstraints.cause_email.length.maximum %>" 
+                  class="form-control"
+                  disabled
+                  placeholder="Insert help text here relevant to the input.">
+
+                <div class="input-group-append">
+                  <input type="submit" id="cause-email-edit" value="Edit" class="btn btn-primary">
+                  <input type="submit" id="cause-email-submit" value="Save" class="btn btn-success d-none">
+                  <input type="submit" id="cause-email-cancel" value="Cancel" class="btn btn-light d-none">
+                </div>
+
+              </div>
+
+              <small class="form-text text-muted">
+                Insert help text here relevant to the input.
+              </small>
+            </div>
+          </div>
+      
+          <!-- Cause website -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-website-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4 pb-3">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_website %>">Website</label>
+              <a data-toggle="collapse" href="#causeWebsiteHelpFull" aria-expanded="false" aria-controls="causeWebsiteHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-website-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causeWebsiteHelpFull">
+                <div class="card card-body mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+              
+              <div class="input-group">
+
+                <input type="text"
+                  id="<%= inject.PostCauseSchema.cause_website %>" 
+                  name="<%= inject.PostCauseSchema.cause_website %>" 
+                  value="<%= locals.cause.website %>" 
+                  maxlength="<%= inject.PostCauseConstraints.cause_website.length.maximum %>" 
+                  class="form-control"
+                  disabled
+                  placeholder="Insert help text here relevant to the input.">
+
+                <div class="input-group-append">
+                  <input type="submit" id="cause-website-edit" value="Edit" class="btn btn-primary">
+                  <input type="submit" id="cause-website-submit" value="Save" class="btn btn-success d-none">
+                  <input type="submit" id="cause-website-cancel" value="Cancel" class="btn btn-light d-none">
+                </div>
+
+              </div>
+
+              <small class="form-text text-muted">
+                Insert help text here relevant to the input.
+              </small>
+            </div>
+          </div>
+
+          <!-- Cause country -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-country-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4 pb-3">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_country %>">Country<span class="text-danger">*</span></label>
+              <a data-toggle="collapse" href="#causeCountryHelpFull" aria-expanded="false" aria-controls="causeCountryHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-country-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causeCountryHelpFull">
+                <div class="card card-body mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+
+              <div class="input-group">
+
+                <select class="custom-select form-control"
+                  id="<%= inject.PostCauseSchema.cause_country %>"
+                  name="<%= inject.PostCauseSchema.cause_country %>"
+                  disabled>
+                    <option value="">Please select</option>
+                  <% locals.countries.forEach((country) => { %>
+                    <option 
+                      <% if (locals.cause.country === country) { %>selected="selected"<% } %>
+                      value="<%= country %>"><%= country %></option>
+                  <% }) %>
+                </select>
+
+                <div class="input-group-append">
+                  <input type="submit" id="cause-country-edit" value="Edit" class="btn btn-primary">
+                  <input type="submit" id="cause-country-submit" value="Save" class="btn btn-success d-none">
+                  <input type="submit" id="cause-country-cancel" value="Cancel" class="btn btn-light d-none">
+                </div>
+
+              </div>
+
+              <small class="form-text text-muted">
+                Insert help text here relevant to the input.
+              </small>
+            </div>
+          </div>
+
+          <!-- Cause address -->
+          <div class="row">
+            <div class="col">
+              <div id="cause-address-error" class="alert alert-danger d-none" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2 pb-0">
+            <div class="col">
+              <label for="<%= inject.PostCauseSchema.cause_address1 %>">Address<span class="text-danger">*</span></label>
+              <a data-toggle="collapse" href="#causeAddressHelpFull" aria-expanded="false" aria-controls="causeAddressHelpFull"><i class="far fa-question-circle"></i></a>
+              <span id="cause-address-saved" class="badge badge-success d-none">Saved</span>
+              
+              <div class="collapse text-muted" id="causeAddressHelpFull">
+                <div class="card card-body mb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+             
+              <input type="text"
+                id="<%= inject.PostCauseSchema.cause_address1 %>" 
+                name="<%= inject.PostCauseSchema.cause_address1 %>" 
+                value="<%= locals.cause.address1 %>" 
+                maxlength="<%= inject.PostCauseConstraints.cause_address1.length.maximum %>" 
+                class="form-control"
+                disabled
+                placeholder="Address line 1">
+            </div>
+          </div>
+
+          <div class="form-group row mb-2 pb-0">
+            <div class="col">
+              <input type="text"
+                id="<%= inject.PostCauseSchema.cause_address2 %>" 
+                name="<%= inject.PostCauseSchema.cause_address2 %>" 
+                value="<%= locals.cause.address2 %>" 
+                maxlength="<%= inject.PostCauseConstraints.cause_address2.length.maximum %>" 
+                class="form-control"
+                disabled
+                placeholder="Address line 2">
+            </div>
+          </div>
+
+          <div class="form-group row mb-2 pb-0">
+            <div class="col">
+              <input type="text"
+                id="<%= inject.PostCauseSchema.cause_address3 %>" 
+                name="<%= inject.PostCauseSchema.cause_address3 %>" 
+                value="<%= locals.cause.address3 %>" 
+                maxlength="<%= inject.PostCauseConstraints.cause_address3.length.maximum %>" 
+                class="form-control"
+                disabled
+                placeholder="Address line 3">
+            </div>
+          </div>
+
+          <div class="form-group row mb-0">
+            <div class="col">
+              <input type="submit" id="cause-address-edit" value="Edit" class="btn btn-primary">
+              <input type="submit" id="cause-address-submit" value="Save" class="btn btn-success d-none">
+              <input type="submit" id="cause-address-cancel" value="Cancel" class="btn btn-light d-none">
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>

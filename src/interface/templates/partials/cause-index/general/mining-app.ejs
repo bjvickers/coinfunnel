@@ -1,0 +1,96 @@
+<div class="tab-pane fade" id="list-mining-app" role="tabpanel" aria-labelledby="list-mining-app-list">
+    
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-desktop"></i>
+        Mining software
+      </div>
+      <div class="card-body">
+
+        <h5>Overview</h5>
+        <p class="card-text text-muted">
+          Your supporters can download the mining application from your
+          
+          <% if (locals.cause.isOnline) { %>
+            <a href="<%= `${inject.ACL.GetShowcase.resource}/${locals.cause.path.getCombinedPath()}` %>">donation</a>
+          <% } else { %>
+            <a tabindex="0" 
+              data-toggle="popover" 
+              data-placement="top" 
+              data-trigger="focus" 
+              data-content="Your charity is not currently online, and so is not visible on the Donation page." 
+              class="popover-links" 
+              href="#">donation</a>
+          <% } %>
+          
+          page, however,
+          you can also download using the link below, for convenience.
+          It is open source, and the download link will take you to 
+          <a target="_blank" href="https://github.com">
+          Github
+          <i class="fas fa-external-link-alt"></i>
+          </a>,
+          the largest host of source code in the world, where you can download the application and also inspect the source
+          code if you wish. After installation, copy and paste your charity ID (below) into the application, which will
+          instruct it to mine specifically for your charity and display your charity photos and details to the user.
+        </p>
+
+        <h5 class="pt-2">System requirements</h5>
+        <p class="card-text text-muted">
+          The application is currently for Windows users only. It will only run on desktops,
+          laptops and notebooks, because only these machines have sufficient power to 
+          generate cryptocurrency (mobiles are not powerful enough, and mining also
+          quickly drains the battery). The app will only become active when your CPU is
+          idle, so that it does not interfere with your normal activity. Additionally, it
+          will consume only 25% of the CPU power, to minimise electricity costs for the
+          user and to prevent the CPU from overheating.
+        </p>
+
+        <h5 class="pt-2">Anti-virus alerts</h5>
+        <p class="card-text text-muted">
+          Note that your anti-virus may report that the application contains malware, and refuse to download
+          it. This is 100% incorrect, and is merely a behaviour implemented by the AV developers to 
+          protect against unauthorised mining that the user is unaware of. You will need to instruct your
+          AV to allow the download and installation to proceed.
+        </p>
+
+        <% if (!locals.cause.isOnline) { %>
+          <hr>
+          <h5 class="text-danger">
+            <i class="fas fa-times-circle"></i>
+            Online status
+          </h5>
+          <p class="card-text text-muted">
+            Your charity must be online for the mining app to generate money for you.
+            However, if you wish to see the app in action before putting your charity online,
+            you can still download it below, and simply enter another charity ID
+            from a charity that is already online (select one from the <a href="/explore">explore</a> 
+            page). The app allows users to add and remove charity recipients, so the ID 
+            can be changed at any time.
+          </p>
+        <% } %>
+        <hr>
+
+        <div class="container">
+          <div class="row summary-row">
+            <div class="col-4 pl-0">
+              Charity ID
+            </div>
+            <div class="col-8">
+              <%= locals.cause.externalId %>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Windows application</div>
+            <div class="col-8">
+              <a target="_blank" href="https://github.com/coinfunnel/client/releases/tag/<%= config.get('app.client_version') %>">
+              Download
+              <i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

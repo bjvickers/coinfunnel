@@ -1,0 +1,94 @@
+<div class="tab-pane fade" id="list-charity-images" role="tabpanel" aria-labelledby="list-charity-images-list">
+
+    <div class="card">
+      <div class="card-header">
+        <i class="far fa-image"></i>
+        Charity images
+        <a data-toggle="collapse" href="#charityImageHelpFull" aria-expanded="false" aria-controls="charityImageHelpFull"><i class="far fa-question-circle"></i></a>
+      </div>
+      <div class="card-body">
+
+        <div id="image-error-notices" class="d-none"></div>
+
+        <div class="row">
+          <div class="col">
+            <div class="collapse text-muted" id="charityImageHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cloudinary-container">
+          <% if (locals.causeImages.length >= 3) { %>
+          <span class="d-inline-block" data-toggle="popover" data-content="Sorry, a maximum of 3 images are allowed only.">
+          <% } %>
+          
+          <button
+            id="add-image"
+            class="btn btn-primary" 
+            type="button"
+            <% if (locals.causeImages.length >= 3) { %>
+              tabindex="0"
+              class="popover-links"
+              style="pointer-events: none;"
+              disabled
+            <% } %>>Add image</button>
+
+          <% if (locals.causeImages.length >= 3) { %>
+          </span>
+          <% } %>
+        </div>
+
+        <form id="image-form">
+          <table class="mt-3 table">
+            <thead>
+              <tr>
+                <th style="width: 33%">Image</th>
+                <th style="width: 33%" class="text-center">Is Primary?</th>
+                <th style="width: 33%" class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <% if (locals.causeImages.length) { %>
+                <tbody>
+                  <% locals.causeImages.forEach((image) => { %>
+                    <tr>
+                      <td class="align-middle">
+                        <img src="<%= image.imageThumb1 %>" alt="Thumbnail" with="90" />
+                      </td>
+                      
+                      <td class="align-middle text-center">
+                        <input type="radio"
+                          value="<%= image.publicId %>"
+                          name="image-primary-status"
+                          <% if (image.isPrimary) { %>
+                            checked
+                          <% } %>>
+                      </td>
+      
+                      <td class="align-middle text-center">
+                        <a class="delete-image" data-image-id="<%= image.publicId %>" href="#">Delete</a>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+            <% } else { %>
+              <tbody class="bg-light">
+                <tr>
+                  <td colspan="3">
+                    <div class="text-center">No images uploaded</div>
+                  </td>
+                </tr>
+              </tbody>
+            <% } %>
+          </table>
+        </form>
+
+      </div>
+    </div>
+  </div>

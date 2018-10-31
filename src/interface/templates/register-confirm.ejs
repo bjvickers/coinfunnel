@@ -1,0 +1,18 @@
+<%- include partials/header.ejs %>
+<%- include partials/nav.ejs %>
+
+<main role="main" class="container text-center">
+  <h2 class="mt-5 h2-styles"><%= inject.seoLibrary.getRouteTitle(locals.pageACL.resource) %></h2>
+
+  <div class="card form-fronthouse">
+    <div class="card-body">
+      <p class="card-text">
+        Thanks for registering. Hopefully this site will help raise money for your charity.
+        You can now <a href="<%= inject.ACL.GetLogin.resource %>">sign in</a>.
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<%- include partials/footer.ejs %>

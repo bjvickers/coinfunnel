@@ -1,0 +1,178 @@
+<div class="tab-pane fade" id="list-charity-verification" role="tabpanel" aria-labelledby="list-charity-verification-list">
+    
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-edit"></i>
+        Charity verification
+      </div>
+      <div class="card-body">
+
+        <% if (locals.cause.getIsVerificationComplete()) { %>
+
+          <% if (locals.cause.getHasFailedVerification()) { %>
+            <p class="card-text text-muted">
+              Your verification failed for the following reason(s):
+            </p>
+            
+            <p class="card-text text-danger">
+              <%= locals.cause.verificationOutcomeReason %>
+            </p>
+
+            <p class="card-text text-muted">
+              If you wish to dispute the outcome then please send an email
+              and your reasons to <strong>hello@coinfunnel.org</strong> quoting
+              your charity ID: <strong><%= locals.cause.externalId %></strong>
+            </p>
+            <hr>
+          <% } %>
+
+          <div class="container">
+            <div class="row summary-row">
+              <div class="col-4 pl-0">
+                Verification status
+              </div>
+              <div class="col-8">
+                <span><%= locals.cause.verificationState %></span>
+              </div>
+            </div>
+
+            <div class="row summary-row">
+              <div class="col-4 pl-0">
+                Verification outcome
+              </div>
+              <div class="col-8">
+                <span><%= locals.cause.verificationOutcome %></span>
+              </div>
+            </div>
+          </div>
+
+        <% } else if (locals.cause.getIsVerificationPending()) { %>
+
+          <p class="card-text text-muted">
+            Verification is in progress. This takes between 24-48 hours. If you wish
+            to cancel the verification, please send an email to 
+            <strong>hello@coinfunnel.org</strong> quoting
+            your charity ID: <strong><%= locals.cause.externalId %></strong>
+          </p>
+          <hr>
+
+          <div class="container">
+            <div class="row summary-row">
+              <div class="col-4 pl-0">
+                Verification status
+              </div>
+              <div class="col-8">
+                <span><%= locals.cause.verificationState %></span>
+              </div>
+            </div>
+
+            <div class="row summary-row">
+              <div class="col-4 pl-0">
+                Verification outcome
+              </div>
+              <div class="col-8">
+                <span><%= locals.cause.verificationOutcome %></span>
+              </div>
+            </div>
+          </div>
+
+        <% } else { %>
+
+          <p class="card-text text-muted">
+            Verification provides assurances to your volunteer miners that they are actually
+            mining for you, and not for a impersonator. Verified charities receive a 
+            <span class="badge badge-success">Verified</span>
+            badge on the explore and donation pages, and also in the mining application.
+          </p>
+
+          <p class="card-text text-muted">
+            Verification is only possible if the following conditions are met:
+          </p>
+
+          <p class="card-text">
+            <ul class="fa-ul text-muted">
+              <li>
+                <% if (locals.cause.getIsComplete()) { %>
+                  <i class="fas fa-check-circle text-success"></i>   
+                <% } else { %>
+                  <i class="fas fa-times-circle text-danger"></i>
+                <% } %>
+                Your charity details, description and keywords are complete
+              </li>
+              <li>
+                <% if (locals.cause.getIsIncorporated()) { %>
+                  <i class="fas fa-check-circle text-success"></i>   
+                <% } else { %>
+                  <i class="fas fa-times-circle text-danger"></i>
+                <% } %>
+                Your charity is legally incorporated
+              </li>
+              <li>
+                <% if (locals.cause.country === 'United Kingdom') { %>
+                  <i class="fas fa-check-circle text-success"></i>   
+                <% } else { %>
+                  <i class="fas fa-times-circle text-danger"></i>
+                <% } %>
+                Your charity is located in the UK (support for other countries is coming soon)
+              </li>
+            </ul>
+          </p>
+
+          <p class="card-text text-muted">
+            Verification will take 24-48 hours. The following checks will be made:
+          </p>
+
+          <p class="card-text">
+            <ul class="text-muted">
+              <li>Verification of charity details against an official, national register</li>
+              <li>Confirmation request made to charity email or phone, as listed on the register</li>
+            </ul>
+          </p>
+          <hr>
+
+          <div class="form-group row mb-0">
+            <div class="col">
+              Is verification possible for my charity?
+              <% if (locals.cause.getIsVerifiable()) { %>
+                <i class="fas fa-check-circle text-success"></i>               
+              <% } else { %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% } %>
+            </div>
+          </div>
+
+          <% if (locals.cause.getIsVerifiable()) { %>
+            <div class="row mt-3">
+              <div class="col">
+                <div id="cause-verify-error" class="alert alert-danger d-none" role="alert"></div>
+              </div>
+            </div>
+
+            <div class="form-group row mt-3">
+              <div class="col">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    id="verificationCheck"
+                    name="verificationCheck"
+                    type="checkbox"
+                    value="1">
+                  <label class="form-check-label" for="verificationCheck">
+                    Request verification
+                    <span id="cause-verify-sent" class="badge badge-success d-none">Sent</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mt-3 mb-0 pb-0">
+              <div class="col">
+                <button id="submit-verify" class="btn btn-primary" disabled>Request</button>
+              </div>
+            </div>
+          <% } %>
+
+        <% } %>
+      </div>
+    </div>
+  </div>

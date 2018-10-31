@@ -1,0 +1,148 @@
+<div class="tab-pane fade show active" id="list-current-wallet" role="tabpanel" aria-labelledby="list-current-wallet-list">
+
+  <div class="card">
+    <div class="card-header">
+      <i class="fab fa-monero"></i>
+      Current wallet
+      <a data-toggle="collapse" href="#currentWalletHelpFull" aria-expanded="false" aria-controls="currentWalletHelpFull"><i class="far fa-question-circle"></i></a>
+    </div>
+    <div class="card-body">
+
+      <div class="container">
+        <div class="row">
+          <div class="col pl-0">
+            <div class="collapse text-muted" id="currentWalletHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row summary-row">
+          <div class="col-4 pl-0">
+            Wallet currency
+          </div>
+          <div class="col-8">
+            <span id="current-wallet-currency">
+              <%= locals.currentWallet.currency.getCurrency() %>
+            </span>
+            <span>
+              (<%= locals.currentWallet.currency.getTicker() %>)
+            </span>
+            <a data-toggle="collapse" href="#currentCurrencyHelpFull" aria-expanded="false" aria-controls="currentCurrencyHelpFull"><i class="far fa-question-circle"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col pl-0">
+            <div class="collapse text-muted" id="currentCurrencyHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row summary-row">
+          <div class="col-4 pl-0">
+            Wallet address
+          </div>
+          <div class="col-8">
+            <span id="current-wallet-addr"><%= locals.currentWallet.address %></span>
+            <a data-toggle="collapse" href="#currentWalletAddressHelpFull" aria-expanded="false" aria-controls="currentWalletAddressHelpFull"><i class="far fa-question-circle"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col pl-0">
+            <div class="collapse text-muted" id="currentWalletAddressHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row summary-row">
+          <div class="col-4 pl-0">Added by</div>
+          <div class="col-8">
+            <span id="current-wallet-creator"><%= locals.currentWallet.creatorType %></span>
+          </div>
+        </div>
+
+        <div class="row summary-row">
+          <div class="col-4 pl-0">Date added</div>
+          <div class="col-8">
+            <span id="current-wallet-date-added"><%= inject.dateLibrary.formatLong(locals.currentWallet.dateAdded) %></span>
+          </div>
+        </div>
+
+        <div class="row summary-row">
+          <div class="col-4 pl-0">Current balance</div>
+          <div class="col-8">
+            <span id="current-wallet-balance">
+              <%= locals.currentWallet.currency.getTicker() + ' ' + locals.currentWallet.balance %>
+            </span>
+            <span class="font-weight-bold">
+              (<%= 
+                inject.currencyLibrary.getUserCurrencySymbol(locals.user.currency) +
+                inject.currencyLibrary.getMoneroToUserCurrency(locals.currentWallet.balance, locals.user.currency, true)
+              %>)
+            </span>
+            <a data-toggle="collapse" href="#currentWalletBalanceHelpFull" aria-expanded="false" aria-controls="currentWalletBalanceHelpFull"><i class="far fa-question-circle"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col pl-0">
+            <div class="collapse text-muted" id="currentWalletBalanceHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row summary-row">
+          <div class="col-4 pl-0">Mining donations received</div>
+          <div class="col-8">
+            <span id="current-wallet-donations"><%= locals.currentWallet.miningDonations %></span>
+            <a data-toggle="collapse" href="#currentWalletMiningDonationsHelpFull" aria-expanded="false" aria-controls="currentWalletMiningDonationsHelpFull"><i class="far fa-question-circle"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col pl-0">
+            <div class="collapse text-muted" id="currentWalletMiningDonationsHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

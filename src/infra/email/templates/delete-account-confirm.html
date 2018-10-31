@@ -1,0 +1,29 @@
+<%- include partials/header.html %>
+
+Hello,
+<br>
+<br>
+Sorry to see you go! Your <%= brand %> account has now been deleted.
+<% if (walletAddresses.length > 0) { %>
+  Please find your wallet addresses below:
+  <br>
+  <br>
+  <% for (let i = 0; i < walletAddresses.length; i++) { %>
+    <span style="width:500px; word-wrap:break-word; display:inline-block;">
+    <%= walletAddresses[i] %>
+    </span>
+
+    <% if ((i+1) !== walletAddresses.length) { %>
+      <br>
+      <br>
+    <% } %>
+
+  <% } %>
+<% } %>
+<br>
+<br>
+Best regards,
+<br>
+<%= brand %>
+
+<%- include partials/footer.html %>

@@ -1,0 +1,80 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/"><%= inject.seoLibrary.getBrandTitle(locals.pageACL.resource) %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item<% if (locals.pageACL.resource == inject.ACL.GetIndex.resource) { %> active<% } %>">
+          <a class="nav-link" href="<%= inject.ACL.GetIndex.resource %>"><%= inject.seoLibrary.getLinkTitle(inject.ACL.GetIndex.resource) %></a>
+        </li>
+        <li class="nav-item<% if (locals.pageACL.resource == inject.ACL.GetExplore.resource) { %> active<% } %>">
+          <a class="nav-link" href="<%= inject.ACL.GetExplore.resource %>"><i class="fas fa-search"></i> <%= inject.seoLibrary.getLinkTitle(inject.ACL.GetExplore.resource) %></a>
+        </li>
+        <li class="nav-item<% if (locals.pageACL.resource == inject.ACL.GetFAQ.resource) { %> active<% } %>">
+          <a class="nav-link" href="<%= inject.ACL.GetFAQ.resource %>"><%= inject.seoLibrary.getLinkTitle(inject.ACL.GetFAQ.resource) %></a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mt-2 mt-md-0">
+        <% if (inject.aclLibrary.isUserAuthorised(inject.ACL.GetLogin.resource, inject.ACL.GetLogin.permission, locals.user.role)) { %>
+          <li class="nav-item<% if (locals.pageACL.resource == inject.ACL.GetLogin.resource) { %> active<% } %>">
+            <a class="nav-link" href="<%= inject.ACL.GetLogin.resource %>"><%= inject.seoLibrary.getLinkTitle(inject.ACL.GetLogin.resource) %></a>
+          </li>
+        <% } %>
+
+        <% if (inject.aclLibrary.isUserAuthorised(inject.ACL.GetRegister.resource, inject.ACL.GetRegister.permission, locals.user.role)) { %>
+          <li class="nav-item<% if (locals.pageACL.resource == inject.ACL.GetRegister.resource) { %> active<% } %>">
+            <a class="nav-link" href="<%= inject.ACL.GetRegister.resource %>"><%= inject.seoLibrary.getLinkTitle(inject.ACL.GetRegister.resource) %></a>
+          </li>
+        <% } %>
+
+        <%
+          let currentDashboard = null
+          let displayDashboardLink = true
+
+          switch (locals.user.role) {
+            case inject.UserRoles.cause: 
+              currentDashboard = inject.ACL.GetCauseIndex.resource;
+              break
+            case inject.UserRoles.donator:
+              currentDashboard = inject.ACL.GetDonatorIndex.resource;
+              break
+            case inject.UserRoles.admin:
+              currentDashboard = inject.ACL.GetAdminIndex.resource;
+              break
+            default:
+              displayDashboardLink = false
+          }
+        %>
+        
+        <% if (displayDashboardLink) { %>
+          <li class="nav-item<% if (locals.pageACL.resource == currentDashboard) { %> active<% } %>">
+            <a class="nav-link" href="<%= currentDashboard %>"><i class="fas fa-columns"></i> <%= inject.seoLibrary.getLinkTitle(currentDashboard) %></a>
+          </li>
+        <% } %>
+
+        <%
+          let displayPaymentsLink = false
+          if (locals.user.role ===inject.UserRoles.cause ) {
+            displayPaymentsLink = true
+          }
+        %>
+
+        <% if (displayPaymentsLink) { %>
+          <li class="nav-item<% if (locals.pageACL.resource == inject.ACL.GetCausePayments.resource) { %> active<% } %>">
+            <a class="nav-link" href="<%= inject.ACL.GetCausePayments.resource %>"><%= inject.seoLibrary.getLinkTitle(inject.ACL.GetCausePayments.resource) %></a>
+          </li>
+        <% } %>
+
+        <% if (inject.aclLibrary.isUserAuthorised(inject.ACL.GetLogout.resource, inject.ACL.GetLogout.permission, locals.user.role)) { %>
+          <li class="nav-item">
+            <a class="nav-link" id="logout" href="#"><%= inject.seoLibrary.getLinkTitle(inject.ACL.GetLogout.resource) %></a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+</header>

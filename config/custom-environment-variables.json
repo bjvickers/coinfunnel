@@ -1,0 +1,29 @@
+{
+  "app": {
+    "env": "NODE_ENV"
+  },
+  "images": {
+    "cloudinary": {
+      "cloud_name": "CLOUDINARY_NAME",
+      "api_key": "CLOUDINARY_API_KEY",
+      "api_secret": "CLOUDINARY_API_SECRET",
+      "url": "CLOUDINARY_URL",
+      "upload_folder": "CLOUDINARY_UPLOAD_FOLDER",
+      "custom_thumb_1": "CLOUDINARY_CUSTOM_THUMB"
+    }
+  },
+  "database": {
+    "mongo": {
+      "db_conn": "MONGO_CONN",
+      "db_name": "MONGO_DB_NAME"
+    }
+  },
+  "email": {
+    "sendgrid": {
+      "api_key": "SENDGRID_API_KEY"
+    }
+  },
+  "token": {
+    "secret": "TOKEN_SECRET"
+  }
+}

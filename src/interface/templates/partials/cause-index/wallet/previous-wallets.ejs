@@ -1,0 +1,113 @@
+<div class="tab-pane fade" id="list-previous-wallets" role="tabpanel" aria-labelledby="list-previous-wallets-list">
+
+  <div class="card bg-light">
+    <div class="card-header">
+      <i class="fas fa-history"></i>
+      Previous wallets
+      <a data-toggle="collapse" href="#previousWalletHelpFull" aria-expanded="false" aria-controls="previousWalletHelpFull"><i class="far fa-question-circle"></i></a>
+    </div>
+    <div class="card-body">
+
+      <div class="container">
+        <div class="row">
+          <div class="col pl-0">
+            <div class="collapse text-muted" id="previousWalletHelpFull">
+              <div class="card card-body mb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% for (let i = 0; i < locals.previousWallets.length; i++) { %>
+
+        <div class="container">
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Wallet currency</div>
+            <div class="col-8">
+              <span id="prev-wallet-currency<%= i %>">
+                <%= previousWallets[i].currency.getCurrency() %>
+              </span>
+              <span>
+                (<%= previousWallets[i].currency.getTicker() %>)
+              </span>
+            </div>
+          </div>
+  
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Wallet address</div>
+            <div class="col-8">
+              <span id="prev-wallet-addr<%= i %>"><%= previousWallets[i].address %></span>
+            </div>
+          </div>
+  
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Added by</div>
+            <div class="col-8">
+              <span id="prev-wallet-creator<%= i %>"><%= previousWallets[i].creatorType %></span>
+            </div>
+          </div>
+  
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Date added</div>
+            <div class="col-8">
+              <span id="prev-wallet-date-added<%= i %>"><%= inject.dateLibrary.formatLong(previousWallets[i].dateAdded) %></span>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Date removed</div>
+            <div class="col-8">
+              <span id="prev-wallet-date-removed<%= i %>"><%= inject.dateLibrary.formatLong(previousWallets[i].dateRemoved) %></span>
+            </div>
+          </div>
+
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Current balance</div>
+            <div class="col-8">
+              <span id="prev-wallet-balance<%= i %>">
+                <%= previousWallets[i].currency.getTicker() + ' ' + previousWallets[i].balance  %>
+              </span>
+              <span class="font-weight-bold">
+                (<%= 
+                  inject.currencyLibrary.getUserCurrencySymbol(locals.user.currency) +
+                  inject.currencyLibrary.getMoneroToUserCurrency(previousWallets[i].balance, locals.user.currency, true)
+                %>)
+              </span>
+            </div>
+          </div>
+  
+          <div class="row summary-row">
+            <div class="col-4 pl-0">Mining donations received</div>
+            <div class="col-8">
+              <span id="prev-wallet-donations<%= i %>">
+                <%= previousWallets[i].currency.getTicker() + ' ' + previousWallets[i].miningDonations  %>
+              </span>
+              <span class="font-weight-bold">
+                (<%= 
+                  inject.currencyLibrary.getUserCurrencySymbol(locals.user.currency) +
+                  inject.currencyLibrary.getMoneroToUserCurrency(previousWallets[i].miningDonations, locals.user.currency, true)
+                %>)
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <% if (i+1 < locals.previousWallets.length) { %><hr><% } %>
+      
+      <% } %>
+
+      <% if (locals.previousWallets.length === 0) { %>
+        <p class="card-text text-center no-previous-wallets">
+          There are no previous wallets for this account.
+        </p>
+      <% } %>
+    </div>
+  </div>
+
+</div>

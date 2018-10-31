@@ -1,0 +1,54 @@
+<div class="tab-pane fade" id="list-charity-desc" role="tabpanel" aria-labelledby="list-charity-desc-list">
+    
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-edit"></i>
+        Charity description
+      </div>
+      <div class="card-body">
+    
+        <div class="row">
+          <div class="col">
+            <div id="cause-desc-error" class="alert alert-danger d-none" role="alert"></div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <label for="<%= inject.PostCauseSchema.cause_desc %>">Description<span class="text-danger">*</span></label>
+            <a data-toggle="collapse" href="#causeDescHelpFull" aria-expanded="false" aria-controls="causeDescHelpFull"><i class="far fa-question-circle"></i></a>
+            <span id="cause-desc-saved" class="badge badge-success d-none">Saved</span>
+
+            <div class="collapse text-muted" id="causeDescHelpFull">
+              <div class="card card-body mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+            
+            <textarea 
+              class="form-control"
+              id="<%= inject.PostCauseSchema.cause_desc %>"
+              name="<%= inject.PostCauseSchema.cause_desc %>"
+              rows="6"
+              maxlength="<%= inject.PostCauseConstraints.cause_desc.length.maximum %>"
+              disabled
+              placeholder="Click edit to start"><%= locals.cause.desc %></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row mb-0">
+          <div class="col d-flex">
+            <input type="submit" id="cause-desc-edit" value="Edit" class="btn btn-primary">
+            <input type="submit" id="cause-desc-submit" value="Save" class="btn btn-success d-none">
+            <input type="submit" id="cause-desc-cancel" value="Cancel" class="btn btn-light d-none">
+            <span class="ml-auto pr-1 align-self-center text-danger d-none" id="cause-desc-length"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

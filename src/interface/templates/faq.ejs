@@ -1,0 +1,79 @@
+<%- include partials/header.ejs %>
+<%- include partials/nav.ejs %>
+
+<style>
+  .faq-anchor {
+    padding-top: 5em;
+    margin-top: -5em;
+  }
+</style>
+
+<main role="main" class="container">
+  <h2 class="mt-5 h2-styles"><%= inject.seoLibrary.getRouteTitle(locals.pageACL.resource) %></h2>
+
+  <ul>
+    <li><a href="#something-else">Something else</a></li>
+    <li><a href="#charity-verification">Charity verification</a></li>
+  </ul>
+
+  <span id="something-else" class="faq-anchor"></span>
+  <div class="card card-body mb-2">
+    <h3>Something else</h3>
+    <p>
+      Text goes here
+    </p>
+  </div>
+  
+  <span id="charity-verification" class="faq-anchor"></span>
+  <div class="card card-body">
+      <h3>Charity verification</h3>
+      <p>
+        CoinFunnel provides free charity verification, to confirm the authenticity of
+        charities listed on this site. However, verification 
+        is currently limited to legally incorporated charities registered in the United Kingdom.
+      </p>
+
+      <p>
+          It is recommended that volunteer miners perform due diligence on their preferred
+          charity before mining, especially if the charity is not verified. This can
+          be done by checking the details provided by the charity, and perhaps contacting
+          them to confirm authenticity.
+        </p>
+
+      <p>
+        Each charity listed on this site will have one of the following verification labels:
+      </p>
+      
+      <h4><span class="badge badge-success">Verified</span></h4>
+      <p>
+        The charity has been successfully verified.
+      </p>
+      
+      <h4><span class="badge badge-warning">Awaiting verification</span></h4>
+      <p>
+        The charity is in the process of being verified, which normally takes between 24-48 hours.
+      </p>
+
+      <h4><span class="badge badge-danger">Failed verification</span></h4>
+      <p>
+        The charity applied for verification, but failed the verification process. This will
+        happen if the charity submitted details to CoinFunnel which are inconsistent with those
+        submitted to the national register, and/or if CoinFunnel was unable to contact the charity.
+      </p>
+
+      <h4><span class="badge badge-danger">Not verified</span></h4>
+      <p>
+        The charity is applicable for free verification but has chosen not to be verified.
+      </p>
+
+      <h4><span class="badge badge-secondary">Cannot verify</span></h4>
+      <p>
+        CoinFunnel does not have the ability to verify the authenticity of the charity
+        at this time. This may be due to the charity being located in a country that is
+        not yet supported for verification, or because the charity is not legally 
+        incorporated.
+      </p>
+  </div>
+</main>
+
+<%- include partials/footer.ejs %>

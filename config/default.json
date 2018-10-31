@@ -1,0 +1,80 @@
+{
+  "app": {
+    "env": "",
+    "log_level": "",
+    "client_version": "0.0.2",
+    "name": "coinfunnel-server",
+    "brand": "CoinFunnel",
+    "private_dns": "http://127.0.0.1",
+    "private_port": "3000",
+    "public_dns": "",
+    "public_port": "",
+    "public_dns_domain": ""
+  },
+  "currency_conversion": {
+    "monero": {
+      "eur": "194.35",
+      "usd": "230.99",
+      "gbp": "170.98"
+    },
+    "default": "gbp",
+    "source": "coingecko"
+  },
+  "pool": {
+    "api": {
+      "timeout": "5000",
+      "balanceUrl": "https://api.nanopool.org/v1/xmr/balance/",
+      "paymentsUrl": "https://api.nanopool.org/v1/xmr/payments/"
+    }
+  },
+  "recaptcha": {
+    "use": "",
+    "verification_url": "https://www.google.com/recaptcha/api/siteverify",
+    "login_secret": "6LeMxVQUAAAAAO_nmMRg-QgYzG_iHLd2NsUUedf2",
+    "register_secret": "6LeRxVQUAAAAAGCarcjRwME-ple190M40He70_Sq",
+    "reset_password_secret": "6LfLwlQUAAAAANC45WgdV4P5verDlWl9aouHx66u"
+  },
+  "images": {
+    "cloudinary": {
+      "cloud_name": "",
+      "api_key": "",
+      "api_secret": "",
+      "url": "",
+      "upload_folder": "",
+      "custom_thumb_1": ""
+    },
+    "use": "cloudinary"
+  },
+  "cookie": {
+    "domain": "",
+    "secure": false
+  },
+  "database": {
+    "mongo": {
+      "db_conn": "",
+      "db_name": ""
+    },
+    "use": "mongo"
+  },
+  "search": {
+    "min_keyword_length": 3,
+    "results_per_page": 25
+  },
+  "email": {
+    "local": {
+      "host": "maildev",
+      "port": "25"
+    },
+    "sendgrid": {
+      "api_key": ""
+    },
+    "use": "mock"
+  },
+  "password": {
+    "salt_work_factor": "10"
+  },
+  "token": {
+    "secret": "",
+    "duration": "1h"
+  }
+}

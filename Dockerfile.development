@@ -1,0 +1,19 @@
+# To build:
+# > docker build --file Dockerfile.development --tag coinfunnel/server:development .
+#
+# To run:
+# > docker run --publish 3000:3000 --env-file .env coinfunnel/server:development
+
+FROM node:8.5.0-alpine
+RUN mkdir -vp /app/src && \
+    mkdir -vp /app/config && \
+    mkdir -vp /app/tests && \
+    mkdir -vp /app/sandbox
+WORKDIR /app
+COPY package.json /app/
+RUN npm install --silent && npm install --silent --global gulp-cli@2.0.1
+COPY ./src /app/src
+COPY ./config /app/config
+COPY ./tests /app/tests
+COPY ./sandbox /app/sandbox
+CMD ["npm", "run", "debug"]

@@ -1,0 +1,98 @@
+<div class="tab-pane fade" id="list-charity-keywords" role="tabpanel" aria-labelledby="list-charity-keywords-list">
+    
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-edit"></i>
+        Charity keywords
+      </div>
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col">
+            <div id="cause-keywords-error" class="alert alert-danger d-none" role="alert"></div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2 pb-0">
+          <div class="col">
+            <label for="<%= inject.PostCauseSchema.cause_keyword1 %>">Keywords<span class="text-danger">*</span></label>
+            <a data-toggle="collapse" href="#causeKeywordsHelpFull" aria-expanded="false" aria-controls="causeKeywordsHelpFull"><i class="far fa-question-circle"></i></a>
+            <span id="cause-keywords-saved" class="badge badge-success d-none">Saved</span>
+            
+            <div class="collapse text-muted" id="causeKeywordsHelpFull">
+              <div class="card card-body mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+            
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="keyword1-addon">1</span>
+              </div>
+              <input type="text"
+                id="<%= inject.PostCauseSchema.cause_keyword1 %>" 
+                name="<%= inject.PostCauseSchema.cause_keywords1 %>" 
+                value="<%= locals.cause.keywords[0] %>" 
+                maxlength="<%= inject.PostCauseConstraints.cause_keyword1.length.maximum %>" 
+                class="form-control"
+                disabled
+                placeholder="Keyword or keyword phrase"
+                aria-describedby="keyword1-addon">
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group row mb-2 pb-0">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="keyword2-addon">2</span>
+              </div>
+
+              <input type="text"
+                id="<%= inject.PostCauseSchema.cause_keyword2 %>" 
+                name="<%= inject.PostCauseSchema.cause_keyword2 %>" 
+                value="<%= locals.cause.keywords[1] %>" 
+                maxlength="<%= inject.PostCauseConstraints.cause_keyword2.length.maximum %>" 
+                class="form-control"
+                disabled
+                placeholder="Keyword or keyword phrase"
+                aria-describedby="keyword2-addon">
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group row mb-2 pb-0">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="keyword3-addon">3</span>
+              </div>
+
+              <input type="text"
+                id="<%= inject.PostCauseSchema.cause_keyword3 %>" 
+                name="<%= inject.PostCauseSchema.cause_keyword3 %>" 
+                value="<%= locals.cause.keywords[2] %>" 
+                maxlength="<%= inject.PostCauseConstraints.cause_keyword3.length.maximum %>" 
+                class="form-control"
+                disabled
+                placeholder="Keyword or keyword phrase"
+                aria-describedby="keyword3-addon">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-0">
+          <div class="col">
+            <input type="submit" id="cause-keywords-edit" value="Edit" class="btn btn-primary">
+            <input type="submit" id="cause-keywords-submit" value="Save" class="btn btn-success d-none">
+            <input type="submit" id="cause-keywords-cancel" value="Cancel" class="btn btn-light d-none">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

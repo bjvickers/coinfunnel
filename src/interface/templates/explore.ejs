@@ -1,0 +1,163 @@
+<%- include partials/header.ejs %>
+<%- include partials/nav.ejs %>
+
+<div data-cause-page="<%= locals.context.causeSearch.pageSearch.page %>" 
+    data-cause-total-pages="<%= locals.context.totalPageNum %>"
+    data-cause-rpp="<%= locals.context.resultsPerPage %>"
+    data-cause-rtp="<%= locals.context.resultsThisPage %>"
+    data-cause-total-results="<%= locals.context.totalNumResults %>"></div>
+
+<!-- Search bar -->
+<main role="main" class="explore-search-bar">
+  <form class="form" name="explore" action="<%= inject.ACL.GetExplore.resource %>" method="get">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-sm-3">
+          <span class="pl-2 h2-styles"><%= inject.seoLibrary.getRouteTitle(locals.pageACL.resource) %></span>
+        </div>
+
+        <div class="col-sm-9 mr-0 pr-0">
+
+          <div class="input-group">
+            <input class="form-control" type="text" id="cause-search" name="cause-search"
+              placeholder="Enter charity name or keywords" aria-label="Enter charity name or keywords"
+              value="<%= locals.context.causeSearch.keywordSearch.keywordFilter %>">
+              
+            <div class="input-group-prepend">
+              <button class="btn btn-primary" type="button" id="explore_search"><i class="fas fa-search"></i> Search</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</main>
+
+<!-- Results and filtering -->
+<div id="explore-results" class="container pt-3">  
+  <div class="row">
+
+    <!-- Sidebar controls -->
+    <div class="col-sm-3 pb-3">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <button type="button" id="explore_clear" class="btn btn-secondary btn-block">Clear search</button>
+        </li>
+
+        <li class="list-group-item">
+          <label for="cause-search-country"><strong>Filter by:</strong></label>
+          <select 
+            class="custom-select form-control"
+            id="cause-search-country"
+            name="cause-search-country">
+            <% locals.countries.forEach((country) => { %>
+              <option
+              <% if ((locals.context.causeSearch.countrySearch.country) && (locals.context.causeSearch.countrySearch.country === country)) { %>selected="selected"<% } %>
+                value="<%= country %>"><%= country %></option>
+            <% }) %>
+          </select>
+        </li>
+
+        <li class="list-group-item">
+          <label for="explore_sort"><strong>Sort by:</strong></label>
+          <select class="custom-select form-control" id="explore_sort" name"explore_sort">
+            <option value="newest" <% if ((locals.context.sortSearch.sort) && (locals.context.sortSearch.sort === inject.CauseSortTypes.newest)) { %>selected="selected"<% } %>>Newest first</option>
+            <option value="name-asc" <% if ((locals.context.sortSearch.sort) && (locals.context.sortSearch.sort === inject.CauseSortTypes.nameAsc)) { %>selected="selected"<% } %>>Name ascending</option>
+            <option value="name-desc" <% if ((locals.context.sortSearch.sort) && (locals.context.sortSearch.sort === inject.CauseSortTypes.nameDesc)) { %>selected="selected"<% } %>>Name descending</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Charity listing -->
+    <div class="col-sm-9">
+      <% locals.context.causes.forEach((cause) => { %>
+        <div class="row explore-result-row" data-cause-item="<%= cause.id %>">
+          <div class="col-sm-3 px-0 mx-0 text-center">
+            <img src="<%= cause.getPrimaryImage() %>" alt="thumnail" class="img-thumbnail">
+          </div>
+          
+          <div class="col-sm-9">
+            <h5 class="mb-0 pb-1">
+              <a href="<%= `${inject.ACL.GetShowcase.resource}/${cause.path.getCombinedPath()}` %>"><%= cause.name %></a>
+            </h5>
+            <div class="d-flex pb-2">
+              <div class="pr-3">
+                <% if (cause.getIsVerified()) { %>
+                  <a target="_blank" href="/faq#charity-verification" class="badge badge-success">Verified</a>
+                <% } else { %>
+                  <% if (cause.getIsVerifiable()) { %>
+                    
+                    <% if (cause.getIsVerificationPending()) { %>
+                      <a target="_blank" href="/faq#charity-verification" class="badge badge-warning">Awaiting verification</a>
+                    <% } else if (cause.getHasFailedVerification()) { %>
+                      <a target="_blank" href="/faq#charity-verification" class="badge badge-danger">Failed verification</a>
+                    <% } else { %>
+                      <a target="_blank" href="/faq#charity-verification" class="badge badge-danger">Not verified</a>
+                    <% } %>
+
+                  <% } else { %>
+                    <a target="_blank" href="/faq#charity-verification" class="badge badge-secondary">Cannot verify</a>
+                  <% } %>
+                <% } %>
+              </div>
+
+              <div class="pr-3">
+                <i class="fas fa-map-marker"></i>
+                <%= cause.country %>
+              </div>
+
+              <div class="pr-3">
+                <a tabindex="0" 
+                  data-toggle="popover" 
+                  data-placement="top" 
+                  data-trigger="focus" 
+                  data-content="The total amount of mining donations funneled to this charity." 
+                  class="popover-links"
+                  href="#">
+                    <%= inject.currencyLibrary.getDefaultCurrencySymbol() + 
+                        inject.currencyLibrary.getMoneroToDefaultCurrency(cause.totalPayouts, false) %>
+                </a>
+              </div>
+
+              <div>
+                <a tabindex="0" 
+                  data-toggle="popover" 
+                  data-placement="top" 
+                  data-trigger="focus" 
+                  data-content="The number of volunteer miners supporting this charity." 
+                  class="popover-links"
+                  href="#">
+                    <i class="fas fa-users"></i>
+                    <%= cause.totalMiners %>
+                </a>
+              </div>
+            </div>
+            <div>
+              <%= cause.getTruncatedDesc() %>
+              <a href="<%= `${inject.ACL.GetShowcase.resource}/${cause.path.getCombinedPath()}` %>">Full details</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+
+      <% if (locals.context.causes.length === 0) { %>
+        <div class="row">
+          <div class="col-12 ml-0 pl-0 mr-0 pr-0">
+              <p class="lead text-center explore-no-match-header pt-2">No charities found</p>
+          </div>
+        </div>
+      <% } %>
+
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <%- locals.paginator.render() %>
+    </div>
+  </div>
+</div>
+
+<%- include partials/footer.ejs %>

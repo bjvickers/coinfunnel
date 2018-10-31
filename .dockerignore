@@ -1,0 +1,10 @@
+node_modules/
+Dockerfile.development
+docker-compose.yml
+README.md
+.env-template
+npm-debug.log
+.travis.yml
+.git/
+.gitignore
+.vscode/

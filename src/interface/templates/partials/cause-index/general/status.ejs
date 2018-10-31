@@ -1,0 +1,83 @@
+<div class="tab-pane fade" id="list-charity-status" role="tabpanel" aria-labelledby="list-charity-status-list">
+    
+    <div class="card">
+      <div class="card-header">
+        <% if (locals.cause.isOnline) { %>
+          <i class="fas fa-eye"></i>
+          Currently online
+        <% } else { %>
+          <i class="fas fa-eye-slash"></i>
+          Currently offline
+        <% } %>
+      </div>
+      <div class="card-body">
+
+          <% if (!locals.cause.getIsComplete()) { %>
+          <div class="row">
+            <div class="col">
+              <p class="card-subtitle text-danger">
+                Before your charity can be displayed on this website, you need
+                to complete your charity details, provide a description of your
+                charity, and a list of 'search' keywords relevant to your charity.
+              </p>
+            </div>
+          </div>
+          <hr>
+          <% } %>
+
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+
+                  <div data-cause-visibility="<% if (locals.cause.isOnline) { %>online<% } else { %>offline<% } %>"></div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" 
+                      id="toggle-online-status1" 
+                      name="toggle-online-status" 
+                      class="custom-control-input"
+                      <% if (!locals.cause.getIsComplete()) { %>
+                        disabled
+                      <% } %>
+                      <% if (locals.cause.getIsComplete() && locals.cause.isOnline) { %>
+                        checked
+                      <% } %>>
+                    <label class="custom-control-label" for="toggle-online-status1">Online</label>
+                    <ul class="app-bullet-points text-muted">
+                      <li>Your charity is visible on this website</li>
+                      <li>Users can voluntarily mine cryptocurrency for your charity</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="custom-control custom-radio">
+                    <input type="radio"
+                      id="toggle-online-status2" 
+                      name="toggle-online-status" 
+                      class="custom-control-input" 
+                      <% if (!locals.cause.getIsComplete()) { %>
+                        disabled
+                      <% } %>
+                      <% if (locals.cause.getIsComplete() && !locals.cause.isOnline) { %>
+                        checked
+                      <% } %>>
+                    <label class="custom-control-label" for="toggle-online-status2">Offline</label>
+                    <ul class="app-bullet-points text-muted">
+                      <li>Your charity is hidden on this website</li>
+                      <li>Users cannot mine cryptocurrency for your charity</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>

@@ -1,0 +1,63 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/nav.ejs %>
+
+<main role="main" class="container mt-5">
+
+  <div class="card card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Wallet address</th>
+            <th scope="col">Transaction ID</th>
+            <th scope="col" class="text-center">
+              Amount (Crypto)
+            </th>
+            <th scope="col" class="text-center">
+              Amount (Fiat)
+            </th>
+            <th scope="col" class="text-center">Confirmed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% locals.causePayouts.forEach((causePayout) => { %>
+            <tr>
+              <td>
+                <span style="width:8em; word-wrap:break-word; display:inline-block;">
+                <%= inject.dateLibrary.formatShort(causePayout.date) %>
+                </span>
+              </td>
+              <td>
+                <span style="width:21em; word-wrap:break-word; display:inline-block;">
+                <%= causePayout.wallet_id %>
+                </span>
+              </td>
+              <td>
+                <span style="width:14em; word-wrap:break-word; display:inline-block;">
+                <%= causePayout.tx_hash %>
+                </span>
+              </td>
+              <td class="text-center">
+                <span style="width:9em; word-wrap:break-word; display:inline-block;">
+                <%= 'XMR ' + causePayout.amount %>
+                </span>
+              </td>
+              <td class="text-center">
+                <span style="width:9em; word-wrap:break-word; display:inline-block;">
+                <%= inject.currencyLibrary.getUserCurrencySymbol(locals.user.currency) + ' ' + inject.currencyLibrary.getMoneroToUserCurrency(causePayout.amount, locals.user.currency, true) %>
+                </span>
+              </td>
+              <td class="text-center">
+                <%= causePayout.confirmed %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<%- include ../partials/footer.ejs %>
