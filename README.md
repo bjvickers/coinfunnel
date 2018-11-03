@@ -3,6 +3,6 @@
 [![Travis](https://travis-ci.org/thefarang/base.svg?branch=master)](https://travis-ci.org/thefarang/base)
 [![Dependency Status](https://david-dm.org/thefarang/base.svg)](https://david-dm.org/thefarang/base)
 [![Coverage Status](https://coveralls.io/repos/github/thefarang/base/badge.svg?branch=master)](https://coveralls.io/github/thefarang/base?branch=master)
-[![Docker Pulls](https://img.shields.io/docker/pulls/thefarang/base.svg)](https://hub.docker.com/r/thefarang/base/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/thefarang/base.svg)](https://hub.docker.com/r/thefarang/base/) [![Greenkeeper badge](https://badges.greenkeeper.io/bjvickers/coinfunnel.svg)](https://greenkeeper.io/)
 
 ## Cryptocurrency funneling service, to charities
